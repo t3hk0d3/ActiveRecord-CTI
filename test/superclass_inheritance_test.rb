@@ -29,9 +29,9 @@ class SuperclassInheritanceTest < Test::Unit::TestCase
 	end
 
 	def test_select
-		users = Admin.where(:first_name => "john_smith", "people.last_name" => "Freeman").where(["last_name = ?", "Freeman"]).order("login DESC");
+		#users = Admin.where(:first_name => "john_smith", "people.last_name" => "Freeman").where(["last_name = ?", "Freeman"]).order("login DESC");
 
-		p users
+		# users
 	end
 
 	def test_insert
@@ -46,11 +46,19 @@ class SuperclassInheritanceTest < Test::Unit::TestCase
 
 		user.save
 
-		# Test select
+		testUser = Admin.find(user.id)
 
+		assert_equal "Jack", testUser.first_name
+		assert_equal "jack_smith", testUser.login
+		assert_equal "barfoo", testUser.permission
 
 		# Test destroy
 		user.destroy
+
+		assert_raise ActiveRecord::RecordNotFound do
+			user = Admin.find(user.id)
+		end
+
 
 	end
 

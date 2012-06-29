@@ -234,8 +234,7 @@ module ActiveRecord::Persistence
 				column = parent.columns_hash[pk]
 				substitute = parent.connection.substitute_at(column, 0)
 
-				relation = parent.unscoped.where(
-					parent.arel_table[pk].eq(substitute))
+				relation = parent.unscoped.where(parent.arel_table[pk].eq(substitute))
 
 				relation.bind_values = [[column, id]]
 				relation.delete_all
