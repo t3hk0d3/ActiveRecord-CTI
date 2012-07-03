@@ -22,5 +22,5 @@ Gem::Specification.new do |gem|
 	gem.add_development_dependency "rails"
 	gem.add_development_dependency "database_cleaner"
 
-	gem.add_dependency "activerecord"
+	gem.add_dependency "activerecord", "~> 3.2.6"
 end
